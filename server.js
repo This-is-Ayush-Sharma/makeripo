@@ -4,6 +4,7 @@ var job = new CronJob(
 	'0 0 0 * * *',
 	function() {
 		console.log('You will see this message every second');
+		console.log(new Date())
 	},
 	null,
 	true,
