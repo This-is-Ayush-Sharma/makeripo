@@ -1,10 +1,16 @@
+const express = require('express');
+const app = express()
+const PORT = process.env.PORT | 3000;
+app.get('/',(req,res)=>{
+	res.send("The sever is up and running")
+})
 var CronJob = require('cron').CronJob;
 console.log("start");
 var job = new CronJob(
-	'0 0 0 * * *',
+	'*/10 * * * * *',
 	function() {
-		console.log('You will see this message every second');
-		console.log(new Date())
+		let d = new Date()
+		console.log('Running time:-',d);
 	},
 	null,
 	true,
@@ -12,3 +18,7 @@ var job = new CronJob(
 );
 // Use this if the 4th param is default value(false)
 job.start()
+
+app.listen(PORT,()=>{
+	console.log(`the sever is up and running at port ${PORT}`);
+})
